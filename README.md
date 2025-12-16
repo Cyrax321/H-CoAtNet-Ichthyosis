@@ -6,7 +6,7 @@
 
 ## Hierarchically Enhanced Hybrid Learning for Ichthyosis Classification
 
-**Official Research Codebase **
+**Official Research Codebase**
 
 This repository provides the **reference implementation** of **H-CoAtNet**, a hierarchically enhanced hybrid convolution–transformer architecture for **multi-class Ichthyosis subtype classification** from dermatological images.
 
@@ -54,21 +54,22 @@ This design is optimized for **data-scarce and class-imbalanced medical image cl
 ## 3. Repository Structure
 
 H-CoAtNet/
-├── README.md                     # Project documentation
-├── requirements.txt              # Python dependencies
+│
+├── README.md                     # This document
+├── requirements.txt              # Dependency specification
+│
 ├── proposed_model/
-│   └── train_h_coatnet.py        # Proposed H-CoAtNet training script
+│   └── train_h_coatnet.py        # Proposed H-CoAtNet training pipeline
+│
 └── baselines/
-    ├── train_cnn.py              # CNN baseline
-    ├── train_efficientnet.py     # EfficientNet-B0
-    ├── train_vit.py              # Vision Transformer
-    ├── train_swin.py             # Swin Transformer
-    ├── train_coatnet.py          # CoAtNet baseline
-    └── train_gft.py              # Gradient Focal Transformer
+    ├── train_cnn.py              # CNN baseline
+    ├── train_efficientnet.py     # EfficientNet-B0
+    ├── train_vit.py              # Vision Transformer
+    ├── train_swin.py             # Swin Transformer
+    ├── train_coatnet.py          # CoAtNet baseline
+    └── train_gft.py              # Gradient Focal Transformer
 
----
-
-## 4. Dataset Description
+## 4. Dataset
 
 * **Total images:** 1,580
 
@@ -87,8 +88,6 @@ H-CoAtNet/
   * Test: 15% (stratified)
 
 * **Image size:** 224 × 224
-
-* **Normalization:** ImageNet mean and standard deviation
 
 ---
 
