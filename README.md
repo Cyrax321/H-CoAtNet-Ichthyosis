@@ -3,9 +3,8 @@
 ---
 
 
-
-## Hierarchically Enhanced Hybrid Learning for Ichthyosis Classification
 # H-CoAtNet
+## Hierarchically Enhanced Hybrid Learning for Ichthyosis Classification
 ---
 ⚠️ **Review-Only Notice**
 
