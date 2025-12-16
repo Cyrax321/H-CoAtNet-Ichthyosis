@@ -14,13 +14,12 @@ This repository is provided **solely for peer review and reproducibility purpose
 
 ---
 
-**Official Research Codebase**
+## **Official Research Codebase**
 
 This repository provides the **reference implementation** of **H-CoAtNet**, a hierarchically enhanced hybrid convolution–transformer architecture for **multi-class Ichthyosis subtype classification** from dermatological images.
 
 The repository is released to support **reproducibility, benchmarking, and further research** in rare disease medical image analysis.
 
----
 
 ## 📄 Associated Paper
 
