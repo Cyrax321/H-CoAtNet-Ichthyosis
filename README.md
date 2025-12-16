@@ -147,7 +147,7 @@ cd H-CoAtNet
 
 ---
 
-````markdown
+
 ## Installation
 
 ### Step 1: Clone the Repository
