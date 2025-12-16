@@ -128,8 +128,6 @@ Each training script contains a configuration section at the top.
 ### Example: `proposed_model/train_h_coatnet.py`
 
 API_KEY = "PASTE_YOUR_ROBOFLOW_API_KEY_HERE"
-PROJECT_NAME = "ich-s-7lnsj"
-WORKSPACE = "hi-l9ueo"
 
 Paste your API key as a string.
 
