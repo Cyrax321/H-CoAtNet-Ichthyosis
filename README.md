@@ -161,17 +161,13 @@ Add or modify the code as follows:
 ```python
 from roboflow import Roboflow
 
-rf = Roboflow(api_key="YOUR_API_KEY_HERE")
-project = rf.workspace("WORKSPACE_NAME").project("PROJECT_NAME")
-dataset = project.version(VERSION_NUMBER).download("folder")
+rf = Roboflow(api_key="API KEY HERE")
+
 ```
 
 Replace:
 
-* `YOUR_API_KEY_HERE` → your Roboflow API key
-* `WORKSPACE_NAME` → Roboflow workspace name
-* `PROJECT_NAME` → dataset project name
-* `VERSION_NUMBER` → dataset version used in the paper
+* `API KEY HERE` → your Roboflow API key
 
 > ⚠️ **Important**
 > The same dataset version must be used across **all baseline and proposed models** to reproduce reported results.
