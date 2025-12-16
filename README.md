@@ -5,14 +5,14 @@
 # H-CoAtNet
 
 ## Hierarchically Enhanced Hybrid Learning for Ichthyosis Classification
-# H-CoAtNet
 
+---
 ⚠️ **Review-Only Notice**
 
 This repository is provided **solely for peer review and reproducibility purposes** associated with the submitted manuscript.  
 **Reuse, redistribution, modification, or deployment of this code is not permitted** without explicit written permission from the authors.
 
-**Official Research Codebase (NeurIPS / IEEE Reproducibility Standard)**
+---
 
 **Official Research Codebase**
 
