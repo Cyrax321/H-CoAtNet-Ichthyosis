@@ -1,49 +1,50 @@
-# H-CoAtNet
 
-### Hierarchically Enhanced Hybrid Learning for Ichthyosis Classification
+````markdown
+# H-CoAtNet
+## Hierarchically Enhanced Hybrid Learning for Ichthyosis Classification
 
 **Official Research Codebase**
 
-This repository provides the **reference implementation** of **H-CoAtNet**, a
-hierarchically enhanced hybrid convolution–transformer architecture for
-multi-class Ichthyosis classification.
+This repository provides the **reference implementation** of **H-CoAtNet**, a hierarchically enhanced hybrid convolution–transformer architecture for **multi-class Ichthyosis subtype classification** from dermatological images.
 
-The repository is released to support **reproducibility, benchmarking, and
-further research** in rare disease medical image analysis.
+The repository is released to support **reproducibility, benchmarking, and further research** in rare disease medical image analysis.
 
+---
 
-## 📄 Paper
+## 📄 Associated Paper
 
-> **Hierarchical Hybrid Learning: Enhanced Classification of Ichthyosis Variants in Dermatological Images Using H-CoAtNet**
-> Rajeev Rajan, Athul Joe Joseph Palliparambil, Anandhu P. Shaji
-> *Under Review, 2025* 
+**Hierarchical Hybrid Learning: Enhanced Classification of Ichthyosis Variants in Dermatological Images Using H-CoAtNet**  
+Rajeev Rajan, Athul Joe Joseph Palliparambil, Anandhu P. Shaji  
+*Under Review, 2025*
 
 ---
 
 ## 1. Introduction
 
-Ichthyosis comprises a heterogeneous group of rare genetic skin disorders characterized by abnormal keratinization and severe scaling. Automated diagnosis remains challenging due to:
+Ichthyosis is a group of rare genetic skin disorders characterized by abnormal keratinization and severe scaling. Automated diagnosis is challenging due to:
 
-* Extreme **class imbalance**
-* **Subtle inter-class morphological differences**
-* **Limited availability of labeled medical data**
+- Extreme **class imbalance**
+- **Subtle morphological differences** between subtypes
+- **Limited annotated medical datasets**
 
-H-CoAtNet addresses these challenges through a **hybrid architectural design** that integrates convolutional inductive biases, transformer-based global context modeling, and hierarchical feature recalibration with adaptive token pruning.
+**H-CoAtNet** addresses these challenges using a hybrid architecture that combines convolutional inductive biases, transformer-based global context modeling, and hierarchical squeeze-excitation with progressive token pruning.
 
 ---
 
 ## 2. Method Overview
 
-**H-CoAtNet** is a sequential hybrid architecture consisting of:
+H-CoAtNet integrates three core components:
 
-* **ConvNeXt backbone** for hierarchical local feature extraction
-* **Transformer blocks** for global contextual dependency modeling
-* **Hierarchical Squeeze-Excitation (H-SE)** with gradient-based token importance scoring
-* **Progressive token pruning** to improve computational efficiency
+1. **ConvNeXt Backbone**  
+   Captures fine-grained local textures and hierarchical spatial representations.
 
-This design enables robust learning under **data-scarce and imbalanced conditions**, which are typical in rare disease classification.
+2. **Transformer Blocks**  
+   Model long-range global dependencies across dermatological regions.
 
-Architectural details, mathematical formulations, and complexity analysis are provided in **Section 2** of the paper .
+3. **Hierarchical Squeeze-Excitation with Token Pruning**  
+   Adaptively recalibrates features and focuses computation on the most discriminative regions.
+
+This design is optimized for **data-scarce and class-imbalanced medical image classification**.
 
 ---
 
@@ -52,11 +53,11 @@ Architectural details, mathematical formulations, and complexity analysis are pr
 ```text
 H-CoAtNet/
 │
-├── README.md                     # This document
-├── requirements.txt              # Dependency specification
+├── README.md                     # Project documentation
+├── requirements.txt              # Python dependencies
 │
 ├── proposed_model/
-│   └── train_h_coatnet.py        # Proposed H-CoAtNet training pipeline
+│   └── train_h_coatnet.py        # Proposed H-CoAtNet training script
 │
 └── baselines/
     ├── train_cnn.py              # CNN baseline
@@ -65,11 +66,11 @@ H-CoAtNet/
     ├── train_swin.py             # Swin Transformer
     ├── train_coatnet.py          # CoAtNet baseline
     └── train_gft.py              # Gradient Focal Transformer
-```
+````
 
 ---
 
-## 4. Dataset
+## 4. Dataset Description
 
 * **Total images:** 1,580
 
@@ -81,47 +82,112 @@ H-CoAtNet/
   * Netherton Syndrome (NS)
   * Healthy Skin
 
-* **Split:** 70% train / 15% validation / 15% test (stratified)
+* **Split:**
 
-* **Resolution:** 224 × 224
+  * Train: 70%
+  * Validation: 15%
+  * Test: 15% (stratified)
 
-* **Normalization:** ImageNet statistics
+* **Image size:** 224 × 224
 
-The dataset was curated from multiple public dermatological sources and validated for diagnostic correctness. Full dataset construction details are provided in **Section 3.1** of the paper .
-
----
-
-## 5. Experimental Protocol (Reproducibility)
-
-All experiments strictly follow a **controlled and reproducible protocol**, consistent with NeurIPS and IEEE guidelines.
-
-### Training Configuration
-
-* Optimizer: Adam
-* Epochs: 30
-* Batch normalization enabled
-* Dropout: 0.2
-* Weight decay and learning rate scheduling applied
-* No external pretraining (trained from scratch)
-
-### Hardware
-
-* Apple MacBook Pro (M3 Pro, 18 GB RAM)
-* Google Colab TPU v4 (verification)
-
-Random seeds were fixed to ensure reproducibility across runs.
+* **Normalization:** ImageNet mean and standard deviation
 
 ---
 
-## 6. Running the Code
+## 5. Dataset Access (Required)
 
-### Train Proposed Model
+The dataset is hosted on **Roboflow Universe** and must be downloaded using **your own API key**.
+
+### Step 1: Create a Roboflow Account
+
+1. Visit: [https://universe.roboflow.com](https://universe.roboflow.com)
+2. Sign up or log in
+
+---
+
+### Step 2: Obtain the Dataset API Key
+
+1. Visit the dataset page:
+   [https://universe.roboflow.com/hi-l9ueo/ich-s-7lnsj](https://universe.roboflow.com/hi-l9ueo/ich-s-7lnsj)
+2. Click **Download Dataset**
+3. Select **Download Dataset (Get code snippet)**
+4. Choose:
+
+   * Format: **Python**
+   * Framework: **Custom / PyTorch**
+5. Enable **Show download code**
+6. Copy the value inside:
+
+   ```python
+   api_key="YOUR_API_KEY"
+   ```
+
+---
+
+## 6. Adding the API Key to the Code
+
+Each training script contains a configuration section at the top.
+
+### Example: `proposed_model/train_h_coatnet.py`
+
+```python
+# ================== CONFIGURATION ==================
+API_KEY = "PASTE_YOUR_ROBOFLOW_API_KEY_HERE"
+# ===================================================
+```
+
+Paste your API key as a string.
+
+---
+
+## 7. Installation
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/your-username/H-CoAtNet.git
+cd H-CoAtNet
+```
+
+### Step 2: Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+**Core dependencies**
+
+* Python ≥ 3.9
+* PyTorch
+* timm
+* torchvision
+* roboflow
+* scikit-learn
+* numpy, pandas, matplotlib
+
+---
+
+## 8. Running the Experiments
+
+All commands must be run from the **root directory**.
+
+### 8.1 Train the Proposed Model (H-CoAtNet)
 
 ```bash
 python -m proposed_model.train_h_coatnet
 ```
 
-### Train Baselines
+This script will:
+
+* Download the dataset using your API key
+* Apply preprocessing and augmentation
+* Train H-CoAtNet for 30 epochs
+* Save the best model weights
+* Generate confusion matrix and learning curves
+
+---
+
+### 8.2 Train Baseline Models
 
 ```bash
 python -m baselines.train_cnn
@@ -132,28 +198,37 @@ python -m baselines.train_coatnet
 python -m baselines.train_gft
 ```
 
-Each script:
-
-* Implements the full architecture
-* Trains using the same experimental protocol
-* Saves best-performing model checkpoints
-* Outputs confusion matrices and learning curves
+All baselines use **identical data splits and training protocols** for fair comparison.
 
 ---
 
-## 7. Evaluation Metrics
+## 9. Experimental Protocol (Reproducibility)
 
-Performance is evaluated using:
+* Optimizer: Adam
+* Epochs: 30
+* Dropout: 0.2
+* Weight decay enabled
+* No external pretraining (trained from scratch)
+* Fixed random seeds
 
-* **Accuracy**
-* **Macro-averaged Precision, Recall, and F1-score**
-* **Weighted F1-score**
+### Hardware
 
-Macro metrics are emphasized to account for **class imbalance**, aligning with best practices in medical AI evaluation.
+* Apple MacBook Pro (M3 Pro, 18 GB RAM)
+* Google Colab TPU v4 (verification)
 
 ---
 
-## 8. Results
+## 10. Evaluation Metrics
+
+* Accuracy
+* Macro-averaged Precision, Recall, F1-score
+* Weighted F1-score
+
+Macro metrics are emphasized to properly evaluate **class-imbalanced medical data**.
+
+---
+
+## 11. Results Summary
 
 | Model                |   Accuracy |   Macro F1 | Weighted F1 |
 | -------------------- | ---------: | ---------: | ----------: |
@@ -165,30 +240,17 @@ Macro metrics are emphasized to account for **class imbalance**, aligning with b
 | CNN                  |     69.62% |     0.6085 |      0.6889 |
 | EfficientNet-B0      |     66.46% |     0.5938 |      0.6675 |
 
-H-CoAtNet demonstrates superior performance across **all classes**, with particularly strong improvements for **minority and clinically critical subtypes** .
+---
+
+## 12. Ethical Considerations
+
+* No patient-identifiable data is used
+* Images are anonymized and publicly sourced
+* Intended as a **decision-support system**, not a standalone diagnostic tool
 
 ---
 
-## 9. Ethical Considerations
-
-* No patient-identifiable information is used
-* All images are anonymized and sourced from publicly available or educational resources
-* The study complies with ethical standards for secondary medical data usage
-* The system is intended as a **decision-support tool**, not a standalone diagnostic system
-
----
-
-## 10. Limitations
-
-* Dataset size remains limited due to disease rarity
-* External clinical validation is required prior to deployment
-* Genetic and clinical metadata are not incorporated in the current model
-
----
-
-## 11. Citation
-
-If you use this repository, please cite:
+## 13. Citation
 
 ```bibtex
 @article{HCoAtNet2025,
@@ -201,9 +263,10 @@ If you use this repository, please cite:
 
 ---
 
-## 12. Contact
+## 14. Contact
 
 **Anandhu P Shaji**
-📧 [reach.anandhu.me@gmail.com](mailto:reach.anandhu.me@gmail.com)
+Email: [reach.anandhu.me@gmail.com](mailto:reach.anandhu.me@gmail.com)
 
----
+```
+
