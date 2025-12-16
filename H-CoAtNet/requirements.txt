@@ -1,13 +1,13 @@
-torch>=2.0.0
-torchvision>=0.15.0
-timm>=0.9.0
+torch
+torchvision
 numpy
 matplotlib
 seaborn
 tqdm
-torchinfo
 scikit-learn
 roboflow
+timm
+torchinfo
 pillow
 pandas
 opencv-python
