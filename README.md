@@ -53,9 +53,9 @@ This design is optimized for **data-scarce and class-imbalanced medical image cl
 
 ## 3. Repository Structure
 
+```text
 H-CoAtNet/
-│
-├── README.md                     # This document
+├── README.md                     # Project documentation
 ├── requirements.txt              # Dependency specification
 │
 ├── proposed_model/
@@ -68,6 +68,8 @@ H-CoAtNet/
     ├── train_swin.py             # Swin Transformer
     ├── train_coatnet.py          # CoAtNet baseline
     └── train_gft.py              # Gradient Focal Transformer
+```
+
 
 ## 4. Dataset
 
