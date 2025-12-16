@@ -1,16 +1,16 @@
----
-
 # H-CoAtNet
 
 ### Hierarchically Enhanced Hybrid Learning for Ichthyosis Classification
 
 **Official Research Codebase**
 
-This repository provides the **reference implementation** of **H-CoAtNet**, a hierarchically enhanced hybrid convolution–transformer architecture for **multi-class classification of Ichthyosis variants** from dermatological images.
+This repository provides the **reference implementation** of **H-CoAtNet**, a
+hierarchically enhanced hybrid convolution–transformer architecture for
+multi-class Ichthyosis classification.
 
-The repository is released to support **reproducibility, benchmarking, and further research** in rare disease medical image analysis.
+The repository is released to support **reproducibility, benchmarking, and
+further research** in rare disease medical image analysis.
 
----
 
 ## 📄 Paper
 
