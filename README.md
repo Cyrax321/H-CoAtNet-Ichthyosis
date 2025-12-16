@@ -1,5 +1,4 @@
 
-
 ---
 
 # **H-CoAtNet**
@@ -11,27 +10,27 @@
 ⚠️ **Review-Only Notice**
 
 This repository is provided **solely for peer review and reproducibility purposes** associated with the submitted manuscript.
-**Reuse, redistribution, modification, or deployment of this code is not permitted** without explicit written permission from the authors.
+**Reuse, redistribution, modification, or deployment of this code is strictly prohibited** without explicit written permission from the authors.
 
 ---
 
 ## **Official Research Codebase**
 
-This repository provides the **reference implementation** of **H-CoAtNet**, a hierarchically enhanced hybrid convolution–transformer architecture for **multi-class Ichthyosis subtype classification** from dermatological images.
+This repository contains the **reference implementation** of **H-CoAtNet**, a hierarchically enhanced hybrid convolution–transformer framework for **multi-class Ichthyosis subtype classification** from dermatological images.
 
-The codebase is released to support **scientific reproducibility, benchmarking, and methodological verification** in rare disease medical image analysis.
+The release supports **methodological verification, benchmarking, and reproducibility** for rare disease medical image analysis.
 
 ---
 
 ## 📄 **Associated Paper**
 
 **Hierarchical Hybrid Learning: Enhanced Classification of Ichthyosis Variants in Dermatological Images Using H-CoAtNet**
-Athul Joe Joseph Palliparambil, Anandhu P. Shaji, Rajeev Rajan
+Rajeev Rajan, Athul Joe Joseph Palliparambil, Anandhu P. Shaji
 *(Under Review, 2025)*
 
 ---
 
-## 🔧 **Repository Structure and Execution Context (Important)**
+## 🔧 **Repository Structure and Execution Context (Critical)**
 
 After cloning, note that the **actual project root** is the inner `H-CoAtNet/` directory.
 
@@ -69,7 +68,7 @@ H-CoAtNet/
 pip install -r requirements.txt
 ```
 
-**Requirements**
+**Core Requirements**
 
 * Python ≥ 3.9
 * PyTorch
@@ -79,111 +78,117 @@ pip install -r requirements.txt
 * numpy, pandas, matplotlib
 * roboflow
 
-Tested on macOS (Apple Silicon) and Linux environments.
+Tested on **macOS (Apple Silicon)** and **Linux** environments.
 
 ---
 
 ## 2. **Problem Overview**
 
-Ichthyosis is a group of rare genetic skin disorders characterized by abnormal keratinization and severe scaling. Automated diagnosis is challenging due to:
+Ichthyosis represents a heterogeneous group of rare genetic skin disorders characterized by abnormal keratinization and severe scaling. Automated classification is challenging due to:
 
-* Severe **class imbalance**
+* Extreme **class imbalance**
 * **Subtle morphological differences** between subtypes
 * **Limited annotated medical datasets**
 
-The proposed **H-CoAtNet** framework addresses these challenges through hybrid convolution–transformer modeling with hierarchical feature refinement.
+H-CoAtNet addresses these challenges through **hybrid convolution–transformer modeling** with hierarchical feature refinement.
 
 ---
 
 ## 3. **Method Overview**
 
-H-CoAtNet integrates three core components:
+H-CoAtNet integrates three core architectural components:
 
-* Convolutional stem for local texture and scale modeling
+* Convolutional stem for localized texture and scale modeling
 * Transformer blocks for global contextual dependency learning
 * Hierarchical squeeze-excitation with progressive token selection
 
-This design balances **inductive bias**, **representational flexibility**, and **computational efficiency**, making it suitable for rare disease classification.
+This design balances **inductive bias**, **global reasoning**, and **computational efficiency**, optimized for rare disease image classification.
 
 ---
 
 ## 4. **Dataset Description**
 
-The dataset consists of **1,580 dermatological images** across five diagnostic categories:
+The dataset used in this study contains **1,580 dermatological images** distributed across **five diagnostic categories**:
 
-* Harlequin Ichthyosis (HI): 158 images
-* Ichthyosis Vulgaris (IV): 474 images
-* Lamellar Ichthyosis (LI): 316 images
-* Netherton Syndrome (NS): 182 images
-* Healthy Skin: 450 images
+* Harlequin Ichthyosis (HI)
+* Ichthyosis Vulgaris (IV)
+* Lamellar Ichthyosis (LI)
+* Netherton Syndrome (NS)
+* Healthy Skin
 
-Images are resized to **224×224**, normalized using ImageNet statistics, and split using **stratified 70/15/15 train–validation–test partitions**.
+Images are resized to **224 × 224**, normalized using ImageNet statistics, and split using **stratified 70/15/15 train–validation–test partitions**.
 
----
-
-## 🔐 5. Dataset Access via API (Required Before Training)
-
-For **controlled, reproducible, and ethical dataset access**, this project uses the **Roboflow Dataset API**.
-
-### Step 1: Create a Roboflow account
-
-👉 [https://roboflow.com](https://roboflow.com)
+> The dataset reflects clinically realistic prevalence while ensuring sufficient representation of rare subtypes.
 
 ---
 
-### Step 2: Generate an API key
+##  5. **Dataset Access and API Configuration (Required Before Running Code)**
 
-After logging in, generate your API key here:
+To ensure **controlled access, versioning, and reproducibility**, the dataset is hosted using **Roboflow**.
 
-👉 **Roboflow API Key Dashboard**
-[https://roboflow.com/account/api](https://roboflow.com/account/api)
+### 📎 Dataset Project Link
 
-Copy the API key. You will need it before running any training script.
+ **Roboflow Dataset Page**
+[https://universe.roboflow.com/hi-l9ueo/ich-s-7lnsj](https://universe.roboflow.com/hi-l9ueo/ich-s-7lnsj)
 
 ---
 
-### Step 3: Add the API key to the code (mandatory)
+## **How to Access the Data**
 
-Open **each training script** (example shown for H-CoAtNet):
+To obtain your **Roboflow API key**, follow these steps:
+
+1. Click the **dataset project link** above.
+2. Navigate to **Dataset** in the left sidebar.
+3. Click **Download Dataset**.
+4. Select **Download Dataset (Get a code snippet or ZIP file)**.
+5. Ensure **Show download code** is enabled.
+6. Choose:
+   **“Custom train this dataset using the provided code snippet in a notebook.”**
+7. Copy **only the API key string** from the snippet.
+
+### Example API key format
+
+```python
+api_key="xxxxxxxxxxxxxxxxxxx"
+```
+
+---
+
+## 🧩 **Adding the API Key to the Code (Mandatory)**
+
+Before executing **any training script**, the API key must be added.
+
+### Example: H-CoAtNet training script
+
+Open:
 
 ```
 proposed_method/train_h_coatnet.py
 ```
 
-Locate the Roboflow initialization section (usually near the top):
+Add the configuration block near the top of the file:
 
 ```python
-from roboflow import Roboflow
-```
-
-Add or modify the code as follows:
-
-```python
-from roboflow import Roboflow
-
-rf = Roboflow(api_key="API KEY HERE")
+#  Configuration
+API_KEY = "PASTE_YOUR_KEY_HERE"
 
 ```
 
-Replace:
+Then initialize the dataset:
 
-* `API KEY HERE` → your Roboflow API key
+```python
+from roboflow import Roboflow
 
-> ⚠️ **Important**
-> The same dataset version must be used across **all baseline and proposed models** to reproduce reported results.
+rf = Roboflow(api_key=API_KEY)
+```
 
----
+**Important notes**
 
-### Official API Documentation
-
-* Roboflow Docs: [https://docs.roboflow.com](https://docs.roboflow.com)
-* API Key Management: [https://roboflow.com/account/api](https://roboflow.com/account/api)
+* Use the **same dataset version** for all baseline and proposed models.
 
 ---
 
 ## 6. **Training and Execution**
-
-All scripts are executed **directly** to ensure maximum compatibility and reproducibility.
 
 ### Proposed Method (H-CoAtNet)
 
@@ -230,7 +235,7 @@ No TPU-specific optimizations are used.
 * Macro-averaged Precision, Recall, F1-score
 * Weighted F1-score
 
-Macro metrics are emphasized due to inherent **class imbalance** in rare disease datasets.
+Macro-averaged metrics are emphasized due to **class imbalance** inherent in rare disease datasets.
 
 ---
 
@@ -251,7 +256,7 @@ Macro metrics are emphasized due to inherent **class imbalance** in rare disease
 ## 10. **Ethical Considerations**
 
 * No patient-identifiable data is used
-* Images are anonymized and publicly sourced
+* Images are anonymized and sourced from publicly available materials
 * Intended strictly as a **clinical decision-support system**, not a standalone diagnostic tool
 
 ---
