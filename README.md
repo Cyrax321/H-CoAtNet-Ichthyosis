@@ -137,7 +137,7 @@ Paste your API key as a string.
 
 ### Step 1: Clone the Repository
 
-git clone [https://github.com/your-username/H-CoAtNet.git](https://github.com/your-username/H-CoAtNet.git)
+git clone [https://github.com/Cyrax321/H-CoAtNet-Ichthyosis.git](https://github.com/Cyrax321/H-CoAtNet-Ichthyosis.git)
 cd H-CoAtNet
 
 ### Step 2: Install Dependencies
