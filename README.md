@@ -1,9 +1,12 @@
 
-````markdown
+
+---
+
 # H-CoAtNet
+
 ## Hierarchically Enhanced Hybrid Learning for Ichthyosis Classification
 
-**Official Research Codebase**
+**Official Research Codebase **
 
 This repository provides the **reference implementation** of **H-CoAtNet**, a hierarchically enhanced hybrid convolution–transformer architecture for **multi-class Ichthyosis subtype classification** from dermatological images.
 
@@ -13,8 +16,8 @@ The repository is released to support **reproducibility, benchmarking, and furth
 
 ## 📄 Associated Paper
 
-**Hierarchical Hybrid Learning: Enhanced Classification of Ichthyosis Variants in Dermatological Images Using H-CoAtNet**  
-Rajeev Rajan, Athul Joe Joseph Palliparambil, Anandhu P. Shaji  
+**Hierarchical Hybrid Learning: Enhanced Classification of Ichthyosis Variants in Dermatological Images Using H-CoAtNet**
+Rajeev Rajan, Athul Joe Joseph Palliparambil, Anandhu P. Shaji
 *Under Review, 2025*
 
 ---
@@ -23,9 +26,9 @@ Rajeev Rajan, Athul Joe Joseph Palliparambil, Anandhu P. Shaji
 
 Ichthyosis is a group of rare genetic skin disorders characterized by abnormal keratinization and severe scaling. Automated diagnosis is challenging due to:
 
-- Extreme **class imbalance**
-- **Subtle morphological differences** between subtypes
-- **Limited annotated medical datasets**
+* Extreme **class imbalance**
+* **Subtle morphological differences** between subtypes
+* **Limited annotated medical datasets**
 
 **H-CoAtNet** addresses these challenges using a hybrid architecture that combines convolutional inductive biases, transformer-based global context modeling, and hierarchical squeeze-excitation with progressive token pruning.
 
@@ -35,13 +38,13 @@ Ichthyosis is a group of rare genetic skin disorders characterized by abnormal k
 
 H-CoAtNet integrates three core components:
 
-1. **ConvNeXt Backbone**  
+1. **ConvNeXt Backbone**
    Captures fine-grained local textures and hierarchical spatial representations.
 
-2. **Transformer Blocks**  
+2. **Transformer Blocks**
    Model long-range global dependencies across dermatological regions.
 
-3. **Hierarchical Squeeze-Excitation with Token Pruning**  
+3. **Hierarchical Squeeze-Excitation with Token Pruning**
    Adaptively recalibrates features and focuses computation on the most discriminative regions.
 
 This design is optimized for **data-scarce and class-imbalanced medical image classification**.
@@ -50,23 +53,18 @@ This design is optimized for **data-scarce and class-imbalanced medical image cl
 
 ## 3. Repository Structure
 
-```text
 H-CoAtNet/
-│
 ├── README.md                     # Project documentation
 ├── requirements.txt              # Python dependencies
-│
 ├── proposed_model/
 │   └── train_h_coatnet.py        # Proposed H-CoAtNet training script
-│
 └── baselines/
-    ├── train_cnn.py              # CNN baseline
-    ├── train_efficientnet.py     # EfficientNet-B0
-    ├── train_vit.py              # Vision Transformer
-    ├── train_swin.py             # Swin Transformer
-    ├── train_coatnet.py          # CoAtNet baseline
-    └── train_gft.py              # Gradient Focal Transformer
-````
+    ├── train_cnn.py              # CNN baseline
+    ├── train_efficientnet.py     # EfficientNet-B0
+    ├── train_vit.py              # Vision Transformer
+    ├── train_swin.py             # Swin Transformer
+    ├── train_coatnet.py          # CoAtNet baseline
+    └── train_gft.py              # Gradient Focal Transformer
 
 ---
 
@@ -117,10 +115,8 @@ The dataset is hosted on **Roboflow Universe** and must be downloaded using **yo
    * Framework: **Custom / PyTorch**
 5. Enable **Show download code**
 6. Copy the value inside:
-
-   ```python
    api_key="YOUR_API_KEY"
-   ```
+
 
 ---
 
@@ -130,11 +126,9 @@ Each training script contains a configuration section at the top.
 
 ### Example: `proposed_model/train_h_coatnet.py`
 
-```python
-# ================== CONFIGURATION ==================
 API_KEY = "PASTE_YOUR_ROBOFLOW_API_KEY_HERE"
-# ===================================================
-```
+PROJECT_NAME = "ich-s-7lnsj"
+WORKSPACE = "hi-l9ueo"
 
 Paste your API key as a string.
 
@@ -144,16 +138,12 @@ Paste your API key as a string.
 
 ### Step 1: Clone the Repository
 
-```bash
-git clone https://github.com/your-username/H-CoAtNet.git
+git clone [https://github.com/your-username/H-CoAtNet.git](https://github.com/your-username/H-CoAtNet.git)
 cd H-CoAtNet
-```
 
 ### Step 2: Install Dependencies
 
-```bash
 pip install -r requirements.txt
-```
 
 **Core dependencies**
 
@@ -173,9 +163,7 @@ All commands must be run from the **root directory**.
 
 ### 8.1 Train the Proposed Model (H-CoAtNet)
 
-```bash
 python -m proposed_model.train_h_coatnet
-```
 
 This script will:
 
@@ -189,14 +177,12 @@ This script will:
 
 ### 8.2 Train Baseline Models
 
-```bash
 python -m baselines.train_cnn
 python -m baselines.train_efficientnet
 python -m baselines.train_vit
 python -m baselines.train_swin
 python -m baselines.train_coatnet
 python -m baselines.train_gft
-```
 
 All baselines use **identical data splits and training protocols** for fair comparison.
 
@@ -230,15 +216,15 @@ Macro metrics are emphasized to properly evaluate **class-imbalanced medical dat
 
 ## 11. Results Summary
 
-| Model                |   Accuracy |   Macro F1 | Weighted F1 |
-| -------------------- | ---------: | ---------: | ----------: |
-| **H-CoAtNet (Ours)** | **90.51%** | **0.8605** |  **0.9024** |
-| Swin Transformer     |     82.91% |     0.7477 |      0.8150 |
-| GFT                  |     82.28% |     0.7701 |      0.8221 |
-| CoAtNet              |     74.68% |     0.6517 |      0.7463 |
-| Vision Transformer   |     72.15% |     0.6310 |      0.7103 |
-| CNN                  |     69.62% |     0.6085 |      0.6889 |
-| EfficientNet-B0      |     66.46% |     0.5938 |      0.6675 |
+| Model                | Accuracy   | Macro F1   | Weighted F1 |
+| -------------------- | ---------- | ---------- | ----------- |
+| **H-CoAtNet (Ours)** | **90.51%** | **0.8605** | **0.9024**  |
+| Swin Transformer     | 82.91%     | 0.7477     | 0.8150      |
+| GFT                  | 82.28%     | 0.7701     | 0.8221      |
+| CoAtNet              | 74.68%     | 0.6517     | 0.7463      |
+| Vision Transformer   | 72.15%     | 0.6310     | 0.7103      |
+| CNN                  | 69.62%     | 0.6085     | 0.6889      |
+| EfficientNet-B0      | 66.46%     | 0.5938     | 0.6675      |
 
 ---
 
@@ -250,23 +236,9 @@ Macro metrics are emphasized to properly evaluate **class-imbalanced medical dat
 
 ---
 
-## 13. Citation
-
-```bibtex
-@article{HCoAtNet2025,
-  title   = {Hierarchical Hybrid Learning: Enhanced Classification of Ichthyosis Variants in Dermatological Images Using H-CoAtNet},
-  author  = {Rajan, Rajeev and Palliparambil, Athul Joe Joseph and Shaji, Anandhu P},
-  journal = {Under Review},
-  year    = {2025}
-}
-```
-
----
-
-## 14. Contact
+## 13. Contact
 
 **Anandhu P Shaji**
 Email: [reach.anandhu.me@gmail.com](mailto:reach.anandhu.me@gmail.com)
 
-```
-
+---
