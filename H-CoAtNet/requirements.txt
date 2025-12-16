@@ -1,13 +1,22 @@
+# Core Deep Learning Frameworks
 torch
 torchvision
+
+# Model Architectures
+timm
+torchinfo
+
+# Data Processing, Scientific Computing, and Visualization
 numpy
 matplotlib
 seaborn
 tqdm
 scikit-learn
+
+# Dataset Management
 roboflow
-timm
-torchinfo
+
+# Standard utilities (ensures robustness for all OS environments)
 pillow
 pandas
 opencv-python
