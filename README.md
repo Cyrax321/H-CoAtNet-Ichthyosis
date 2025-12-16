@@ -1,14 +1,15 @@
 
-
 ---
-
 
 # H-CoAtNet
+
 ## Hierarchically Enhanced Hybrid Learning for Ichthyosis Classification
+
 ---
+
 ⚠️ **Review-Only Notice**
 
-This repository is provided **solely for peer review and reproducibility purposes** associated with the submitted manuscript.  
+This repository is provided **solely for peer review and reproducibility purposes** associated with the submitted manuscript.
 **Reuse, redistribution, modification, or deployment of this code is not permitted** without explicit written permission from the authors.
 
 ---
@@ -17,17 +18,55 @@ This repository is provided **solely for peer review and reproducibility purpose
 
 This repository provides the **reference implementation** of **H-CoAtNet**, a hierarchically enhanced hybrid convolution–transformer architecture for **multi-class Ichthyosis subtype classification** from dermatological images.
 
-The repository is released to support **reproducibility, benchmarking, and further research** in rare disease medical image analysis.
+The repository is released to support **reproducibility and benchmarking** in rare disease medical image analysis.
 
+---
 
 ## 📄 Associated Paper
 
 **Hierarchical Hybrid Learning: Enhanced Classification of Ichthyosis Variants in Dermatological Images Using H-CoAtNet**
-Athul Joe Joseph Palliparambil, Anandhu P. Shaji, Rajeev Rajan (Under Review, 2025)
+Athul Joe Joseph Palliparambil, Anandhu P. Shaji, Rajeev Rajan
+*(Under Review, 2025)*
 
 ---
 
-## 1. Introduction
+## 🔧 Repository Structure and Setup (Important)
+
+After cloning, note that the **actual project root** is the inner `H-CoAtNet/` directory.
+
+```bash
+git clone https://github.com/Cyrax321/H-CoAtNet-Ichthyosis.git
+cd H-CoAtNet-Ichthyosis
+cd H-CoAtNet
+```
+
+All commands below **must be executed from this directory**.
+Running commands from the outer directory will result in missing file or module errors.
+
+---
+
+## 1. Environment Setup
+
+### Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+**Requirements**
+
+* Python ≥ 3.9
+* PyTorch
+* timm
+* torchvision
+* scikit-learn
+* numpy, pandas, matplotlib
+
+Tested on macOS (Apple Silicon) and Linux environments.
+
+---
+
+## 2. Introduction
 
 Ichthyosis is a group of rare genetic skin disorders characterized by abnormal keratinization and severe scaling. Automated diagnosis is challenging due to:
 
@@ -35,208 +74,69 @@ Ichthyosis is a group of rare genetic skin disorders characterized by abnormal k
 * **Subtle morphological differences** between subtypes
 * **Limited annotated medical datasets**
 
-**H-CoAtNet** addresses these challenges using a hybrid architecture that combines convolutional inductive biases, transformer-based global context modeling, and hierarchical squeeze-excitation with progressive token pruning.
+**H-CoAtNet** addresses these challenges using a hybrid architecture that combines convolutional inductive biases, transformer-based global context modeling, and hierarchical feature refinement.
 
 ---
 
-## 2. Method Overview
+## 3. Method Overview
 
 H-CoAtNet integrates three core components:
 
-1. **ConvNeXt Backbone**
-   Captures fine-grained local textures and hierarchical spatial representations.
-
-2. **Transformer Blocks**
-   Model long-range global dependencies across dermatological regions.
-
-3. **Hierarchical Squeeze-Excitation with Token Pruning**
-   Adaptively recalibrates features and focuses computation on the most discriminative regions.
-
-This design is optimized for **data-scarce and class-imbalanced medical image classification**.
+* Convolutional stem for local texture modeling
+* Transformer blocks for global contextual reasoning
+* Hierarchical feature aggregation for subtype discrimination
 
 ---
 
-## 3. Repository Structure
+## 8. Training and Execution
 
-```text
-H-CoAtNet/
-├── README.md                     # Project documentation
-├── requirements.txt              # Dependency specification
-│
-├── proposed_model/
-│   └── train_h_coatnet.py        # Proposed H-CoAtNet training pipeline
-│
-└── baselines/
-    ├── train_cnn.py              # CNN baseline
-    ├── train_efficientnet.py     # EfficientNet-B0
-    ├── train_vit.py              # Vision Transformer
-    ├── train_swin.py             # Swin Transformer
-    ├── train_coatnet.py          # CoAtNet baseline
-    └── train_gft.py              # Gradient Focal Transformer
-```
+All scripts are executed **directly** to ensure maximum compatibility and reproducibility.
 
-
-## 4. Dataset
-
-* **Total images:** 1,580
-
-* **Classes (5):**
-
-  * Harlequin Ichthyosis (HI)
-  * Ichthyosis Vulgaris (IV)
-  * Lamellar Ichthyosis (LI)
-  * Netherton Syndrome (NS)
-  * Healthy Skin
-
-* **Split:**
-
-  * Train: 70%
-  * Validation: 15%
-  * Test: 15% (stratified)
-
-* **Image size:** 224 × 224
-
----
-
-## 5. Dataset Access (Required)
-
-The dataset is hosted on **Roboflow Universe** and must be downloaded using **your own API key**.
-
-### Step 1: Create a Roboflow Account
-
-1. Visit: [https://universe.roboflow.com](https://universe.roboflow.com)
-2. Sign up or log in
-
----
-
-### Step 2: Obtain the Dataset API Key
-
-1. Visit the dataset page:
-   [https://universe.roboflow.com/hi-l9ueo/ich-s-7lnsj](https://universe.roboflow.com/hi-l9ueo/ich-s-7lnsj)
-2. Click **Download Dataset**
-3. Select **Download Dataset (Get code snippet)**
-4. Choose:
-
-   * Format: **Python**
-   * Framework: **Custom / PyTorch**
-5. Enable **Show download code**
-6. Copy the value inside:
-   api_key="YOUR_API_KEY"
-
-
----
-
-## 6. Adding the API Key to the Code
-
-Each training script contains a configuration section at the top.
-
-### Example: `proposed_model/train_h_coatnet.py`
-
-API_KEY = "PASTE_YOUR_ROBOFLOW_API_KEY_HERE"
-
-Paste your API key as a string.
-
----
-
-## 7. Installation
-
-### Step 1: Clone the Repository
-
-git clone [https://github.com/Cyrax321/H-CoAtNet-Ichthyosis.git](https://github.com/Cyrax321/H-CoAtNet-Ichthyosis.git)
-cd H-CoAtNet
-
----
-
-
-## Installation
-
-### Step 1: Clone the Repository
+### Proposed Method (H-CoAtNet)
 
 ```bash
-git clone https://github.com/Cyrax321/H-CoAtNet-Ichthyosis.git
-cd H-CoAtNet-Ichthyosis
-````
-
-### Step 2: Install Dependencies
-
-```bash
-pip install -r requirements.txt
+python proposed_method/train_h_coatnet.py
 ```
 
-**Core dependencies**
-
-* Python ≥ 3.9
-* PyTorch
-* timm
-* torchvision
-* roboflow
-* scikit-learn
-* numpy, pandas, matplotlib
-
----
-
-## 8. Running the Experiments
-
-All commands must be run from the **root directory** of the repository.
-
-### 8.1 Train the Proposed Model (H-CoAtNet)
-
-```bash
-python -m proposed_model.train_h_coatnet
-```
-
-This script will:
-
-* Download the dataset using your Roboflow API key
-* Apply preprocessing and data augmentation
-* Train H-CoAtNet for 30 epochs
-* Save the best model weights
-* Generate confusion matrix and learning curves
-
----
-
-### 8.2 Train Baseline Models
-
-All baseline models can be trained independently using the commands below.
-Each script follows the same dataset split, preprocessing pipeline, and evaluation protocol to ensure a fair comparison with the proposed H-CoAtNet model.
-
-Run all commands from the **root directory** of the repository.
+### Baseline Models
 
 #### CNN Baseline
 
 ```bash
-python -m baselines.train_cnn
+python baselines/train_cnn.py
 ```
 
 #### EfficientNet-B0
 
 ```bash
-python -m baselines.train_efficientnet
+python baselines/train_efficientnet.py
 ```
 
 #### Vision Transformer (ViT)
 
 ```bash
-python -m baselines.train_vit
+python baselines/train_vit.py
 ```
 
 #### Swin Transformer
 
 ```bash
-python -m baselines.train_swin
+python baselines/train_swin.py
 ```
 
 #### CoAtNet Baseline
 
 ```bash
-python -m baselines.train_coatnet
+python baselines/train_coatnet.py
 ```
 
 #### Gradient Focal Transformer (GFT)
 
 ```bash
-python -m baselines.train_gft
+python baselines/train_gft.py
 ```
+
+> All models are trained using identical dataset splits and evaluation protocols for fair comparison.
 
 ---
 
@@ -252,7 +152,9 @@ python -m baselines.train_gft
 ### Hardware
 
 * Apple MacBook Pro (M3 Pro, 18 GB RAM)
-* Google Colab TPU v4 (verification)
+* Google Colab (verification only)
+
+No TPU-specific optimizations are used.
 
 ---
 
@@ -262,7 +164,7 @@ python -m baselines.train_gft
 * Macro-averaged Precision, Recall, F1-score
 * Weighted F1-score
 
-Macro metrics are emphasized to properly evaluate **class-imbalanced medical data**.
+Macro-averaged metrics are emphasized to properly assess **class-imbalanced medical datasets**.
 
 ---
 
@@ -284,13 +186,14 @@ Macro metrics are emphasized to properly evaluate **class-imbalanced medical dat
 
 * No patient-identifiable data is used
 * Images are anonymized and publicly sourced
-* Intended as a **decision-support system**, not a standalone diagnostic tool
+* Intended strictly as a **decision-support system**, not a standalone diagnostic tool
 
 ---
 
 ## 13. Contact
 
-**Anandhu P Shaji**
+**Anandhu P. Shaji**
 Email: [reach.anandhu.me@gmail.com](mailto:reach.anandhu.me@gmail.com)
 
 ---
+
