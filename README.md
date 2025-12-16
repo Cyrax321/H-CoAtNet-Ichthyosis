@@ -140,9 +140,23 @@ Paste your API key as a string.
 git clone [https://github.com/Cyrax321/H-CoAtNet-Ichthyosis.git](https://github.com/Cyrax321/H-CoAtNet-Ichthyosis.git)
 cd H-CoAtNet
 
+---
+
+````markdown
+## Installation
+
+### Step 1: Clone the Repository
+
+```bash
+git clone https://github.com/Cyrax321/H-CoAtNet-Ichthyosis.git
+cd H-CoAtNet-Ichthyosis
+````
+
 ### Step 2: Install Dependencies
 
+```bash
 pip install -r requirements.txt
+```
 
 **Core dependencies**
 
@@ -158,16 +172,18 @@ pip install -r requirements.txt
 
 ## 8. Running the Experiments
 
-All commands must be run from the **root directory**.
+All commands must be run from the **root directory** of the repository.
 
 ### 8.1 Train the Proposed Model (H-CoAtNet)
 
+```bash
 python -m proposed_model.train_h_coatnet
+```
 
 This script will:
 
-* Download the dataset using your API key
-* Apply preprocessing and augmentation
+* Download the dataset using your Roboflow API key
+* Apply preprocessing and data augmentation
 * Train H-CoAtNet for 30 epochs
 * Save the best model weights
 * Generate confusion matrix and learning curves
@@ -176,14 +192,46 @@ This script will:
 
 ### 8.2 Train Baseline Models
 
-python -m baselines.train_cnn
-python -m baselines.train_efficientnet
-python -m baselines.train_vit
-python -m baselines.train_swin
-python -m baselines.train_coatnet
-python -m baselines.train_gft
+All baseline models can be trained independently using the commands below.
+Each script follows the same dataset split, preprocessing pipeline, and evaluation protocol to ensure a fair comparison with the proposed H-CoAtNet model.
 
-All baselines use **identical data splits and training protocols** for fair comparison.
+Run all commands from the **root directory** of the repository.
+
+#### CNN Baseline
+
+```bash
+python -m baselines.train_cnn
+```
+
+#### EfficientNet-B0
+
+```bash
+python -m baselines.train_efficientnet
+```
+
+#### Vision Transformer (ViT)
+
+```bash
+python -m baselines.train_vit
+```
+
+#### Swin Transformer
+
+```bash
+python -m baselines.train_swin
+```
+
+#### CoAtNet Baseline
+
+```bash
+python -m baselines.train_coatnet
+```
+
+#### Gradient Focal Transformer (GFT)
+
+```bash
+python -m baselines.train_gft
+```
 
 ---
 
