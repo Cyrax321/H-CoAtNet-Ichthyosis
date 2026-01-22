@@ -10,7 +10,7 @@
 ⚠️ **Review-Only Notice**
 
 This repository is provided **solely for peer review and reproducibility purposes** associated with the submitted manuscript.
-**Reuse, redistribution, modification, or deployment of this code is strictly prohibited** without explicit written permission from the authors.
+**Reuse,redistribution,modification, or deployment of this code is strictly prohibited** without explicit written permission from the authors.
 
 ---
 
